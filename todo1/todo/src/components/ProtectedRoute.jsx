@@ -1,4 +1,4 @@
-import { useUser } from "../context/useUser.jsx"
+import { useUser } from "../context/useUser"
 import { Navigate, Outlet } from "react-router-dom"
 
 export default function ProtectedRoute() {

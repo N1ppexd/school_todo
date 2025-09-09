@@ -1,13 +1,13 @@
-import { useState } from "react"
-import { UserContext } from "./UserContext.jsx"
-import axios from "axios"
+import { useState } from 'react'
+import { UserContext } from './UserContext'
+import axios from 'axios'
 
 export default function UserProvider({children}) {
 
     const apiUrl = import.meta.env.VITE_API_URL;
 
 
-    const uderFromStorage = localStorage.getItem('user')
+    const uderFromStorage = sessionStorage.getItem('user')
     const [user, setUser] = useState(uderFromStorage ? JSON.parse(uderFromStorage) : {email: '', password: ''})
 
     
@@ -17,15 +17,15 @@ export default function UserProvider({children}) {
         setUser({email: '', password: ''})
     }
 
-    const login = async (email, password) => {
+    const logIn = async () => {
         const headers = {headers: {'Content-Type': 'application/json'}}
-        await axios.post(`${apiUrl}/user/login`, {user: {email, password}}, headers)
+        const response = await axios.post(`${apiUrl}/user/login`, {user: {email, password}}, headers)
         setUser(response.data)
-        localStorage.setItem('user', JSON.stringify(response.data))
+        sessionStorage.setItem('user', JSON.stringify(response.data))
     }
 
     return (
-        <UserContext.Provider value={{user, setUser, signUp, login}}>
+        <UserContext.Provider value={{user, setUser, signUp, logIn}}>
             {children}
         </UserContext.Provider>
     )
