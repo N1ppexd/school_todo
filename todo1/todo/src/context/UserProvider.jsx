@@ -9,8 +9,8 @@ export default function UserProvider({children}) {
 
     
 
-    const uderFromStorage = sessionStorage.getItem('user')
-    const [user, setUser] = useState(uderFromStorage ? JSON.parse(uderFromStorage) : {email: '', password: ''})
+    const userFromStorage = sessionStorage.getItem('user')
+    const [user, setUser] = useState(userFromStorage ? JSON.parse(userFromStorage) : {email: '', password: ''})
 
     
     const signUp = async () => {

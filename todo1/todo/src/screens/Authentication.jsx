@@ -27,10 +27,10 @@ export default function Authentication({authenticationMode}) {
 
     return (
         <div>
-            <h3>{authenticationMode.Login ? 'Log in' : 'Sign up'}</h3>
+            <h3>{authenticationMode === AuthenticationMode.Login ? 'Log in' : 'Sign up'}</h3>
             <form onSubmit={handleSubmit}>
                 <label>Email</label>
-                <input placeholder='Email'
+                <input placeholder='Email' type='email'
                     value={user.email}
                     onChange={e => setUser({...user, email: e.target.value})}
 

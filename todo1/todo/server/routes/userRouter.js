@@ -75,7 +75,7 @@ router.post('/login', (req, res, next) => {
             }
         })
 
-        const token = sign({user: dbUser.email}, process.env.JWT_SECRET_KEY, {expiresIn: '1h'})
+        const token = sign({user: dbUser.email}, process.env.JWT_SECRET_KEY)
         res.status(200).json({id: dbUser.id, email: dbUser.email, token})
     })
 })
